@@ -27,7 +27,7 @@ def smooth_boundary(x, y, smoothing_factor=0.01):
 
     return smoothed_x, smoothed_y
 
-def plot_concave_hull(data, sorted_categories, xy_range, start, end, alpha, smoothing_factor, save_dxf, output_folder):
+def plot_concave_hull(data, sorted_categories, xy_range, start, end, alpha, smoothing_factor, save_dxf, output_folder, area_threshold):
     import os
 
     """
@@ -44,7 +44,6 @@ def plot_concave_hull(data, sorted_categories, xy_range, start, end, alpha, smoo
     - dxf_boundaries_filename (str): Path to save the DXF file with boundaries.
     - dxf_crosses_filename (str): Path to save the DXF file with red crosses.
     """
-    area_threshold = 4.0
     for idx, category in enumerate(sorted_categories[start:end], start=start):
 
         all_smoothed_boundaries = []
@@ -85,8 +84,6 @@ def plot_concave_hull(data, sorted_categories, xy_range, start, end, alpha, smoo
                 x=smoothed_x, y=smoothed_y, mode='lines', line=dict(color='red', width=2), name='Smoothed Hull'
             ))
 
-        area_threshold -= 0.02
-
         # Now filter only the points belonging to the current category
         category_peak_data = category_data[category_data['category'] == category]
 
@@ -124,7 +121,7 @@ def plot_concave_hull(data, sorted_categories, xy_range, start, end, alpha, smoo
 
         if save_dxf:
             category_name = sorted_categories[idx]
-            dxf_filename = os.path.join(output_folder, f"{category_name}.dxf50")
+            dxf_filename = os.path.join(output_folder, f"{category_name}.dxf")
             save_combined_to_dxf(all_smoothed_boundaries, all_red_crosses, filename=dxf_filename)
 
 
@@ -177,6 +174,7 @@ import math
 
 
 def save_combined_to_dxf(all_smoothed_boundaries, crosses, filename="combined.dxf50"):
+    import os
     """
     Save boundaries, crosses, and a margin square to a single DXF file with different layers and colors.
 
@@ -210,5 +208,12 @@ def save_combined_to_dxf(all_smoothed_boundaries, crosses, filename="combined.dx
     msp.add_lwpolyline(margin_square, dxfattribs={"layer": "Margin"})
 
     # Save the combined DXF file
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    full_path = os.path.join(base_dir, filename)
+
+    # Ensure the directory exists
+    output_dir = os.path.dirname(full_path)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     doc.saveas(filename)
     print(f"Combined DXF file saved as {filename}")

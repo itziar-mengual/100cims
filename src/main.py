@@ -1,6 +1,8 @@
 # main.py
 import os
-from src.data_processing import load_shapefiles, process_shapefiles, process_coordinates, rescale_data, categorize_and_sort, save_processed_data, load_processed_data
+from src.data_processing import (load_shapefiles, process_shapefiles,
+                                 process_coordinates, rescale_data, categorize_and_sort,
+                                 save_processed_data, load_processed_data)
 from src.data_maps import plot_concave_hull
 
 if __name__ == "__main__":
@@ -26,12 +28,13 @@ if __name__ == "__main__":
         # Save the processed data for future use
         save_processed_data(data, processed_data_file)
 
-    data, sorted_categories = categorize_and_sort(data)
+    data, sorted_categories = categorize_and_sort(data, bin_size=50)
     xy_range = [0, 333]
     data = rescale_data(data, xy_range = xy_range)
-    start = 13; end = start + 1
-    save_dxf = False
-    alpha = 0.6; smoothing_factor = 10
+    start = -10; end = start + 1
+    save_dxf = True
+    alpha = 0.4; smoothing_factor = 10
     plot_concave_hull(
-        data, sorted_categories, xy_range, start, end, alpha, smoothing_factor, save_dxf, output_folder
+        data, sorted_categories, xy_range, start, end, alpha,
+        smoothing_factor, save_dxf, output_folder, area_threshold = 2
     )
