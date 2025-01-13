@@ -6,7 +6,6 @@ from shapely.geometry import MultiPolygon, Polygon
 from scipy.interpolate import splprep, splev
 import numpy as np
 
-
 def smooth_boundary(x, y, smoothing_factor=0.01):
     """
     Smooths the boundary points using cubic splines and ensures the polygon is closed.
@@ -28,8 +27,8 @@ def smooth_boundary(x, y, smoothing_factor=0.01):
 
     return smoothed_x, smoothed_y
 
-def plot_concave_hull(data, sorted_categories, alpha=20, start=0, end=1, smoothing_factor=0.01, save_dxf=False):
-    from src.main import xy_range  # Assuming this is a valid import
+def plot_concave_hull(data, sorted_categories, xy_range, start, end, alpha, smoothing_factor, save_dxf, output_folder):
+    import os
 
     """
     Plots the concave hull of points for specified categories with optional smoothing.
@@ -122,8 +121,7 @@ def plot_concave_hull(data, sorted_categories, alpha=20, start=0, end=1, smoothi
         )
 
         fig.show()
-        import os
-        from src.main import output_folder
+
         if save_dxf:
             category_name = sorted_categories[idx]
             dxf_filename = os.path.join(output_folder, f"{category_name}.dxf50")
