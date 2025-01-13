@@ -8,7 +8,7 @@ from src.data_maps import plot_concave_hull
 shapefile_folder = "data/shapefiles"
 output_folder = "data/output"
 processed_data_file = os.path.join(output_folder, "processed_data.csv")
-processed_peak_file = os.path.join("data/CimsCatalunya.csv")
+processed_peak_file = os.path.join("../data/CimsCatalunya.csv")
 
 # Check if the processed data file exists
 if os.path.exists(processed_peak_file):

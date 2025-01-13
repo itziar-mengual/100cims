@@ -79,8 +79,8 @@ def process_layer(entities, layer, msp):
     return msp
 
 # Example usage
-dxf_files = list(Path("data/output").glob("*.dxf"))
+dxf_files = list(Path("../data/output").glob("*.dxf"))
 dxf_files = sorted(dxf_files, key=lambda p: int(p.stem.split()[0].rstrip('m')))
-output_directory = Path("data/dxf100")
+output_directory = Path("../data/dxf100")
 
 merge_dxf_files_by_gap(dxf_files, gap=100, output_directory=output_directory)

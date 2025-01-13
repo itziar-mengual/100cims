@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 from shapely.geometry import MultiPolygon, Polygon
 from scipy.interpolate import splprep, splev
 import numpy as np
-import ezdxf
+
 
 def smooth_boundary(x, y, smoothing_factor=0.01):
     """
@@ -29,7 +29,7 @@ def smooth_boundary(x, y, smoothing_factor=0.01):
     return smoothed_x, smoothed_y
 
 def plot_concave_hull(data, sorted_categories, alpha=20, start=0, end=1, smoothing_factor=0.01, save_dxf=False):
-    from main import xy_range  # Assuming this is a valid import
+    from src.main import xy_range  # Assuming this is a valid import
 
     """
     Plots the concave hull of points for specified categories with optional smoothing.
@@ -123,14 +123,12 @@ def plot_concave_hull(data, sorted_categories, alpha=20, start=0, end=1, smoothi
 
         fig.show()
         import os
-        from main import output_folder
+        from src.main import output_folder
         if save_dxf:
             category_name = sorted_categories[idx]
             dxf_filename = os.path.join(output_folder, f"{category_name}.dxf50")
             save_combined_to_dxf(all_smoothed_boundaries, all_red_crosses, filename=dxf_filename)
 
-import math
-import math
 
 def create_circle(x, y, radius, num_segments=100):
     """
@@ -178,7 +176,7 @@ def create_cross_lines(x, y, size=1):
 
 import ezdxf
 import math
-from ezdxf.math import Vec3
+
 
 def save_combined_to_dxf(all_smoothed_boundaries, crosses, filename="combined.dxf50"):
     """
