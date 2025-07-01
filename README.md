@@ -32,8 +32,8 @@ This project processes geospatial shapefile data, extracts altitude information,
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/your-repository-name.git
-cd your-repository-name
+git clone https://github.com/itziar-mengual/100cims.git
+cd itziar-mengual
 ```
 
 ## Project Structure
