@@ -1,6 +1,7 @@
 # Geospatial Concave Hull Processing and Visualization
 
-This project processes geospatial shapefile data, extracts altitude information, categorizes and sorts the data by altitude, and visualizes the concave hull boundaries of different altitude categories with smoothing. It can also export smoothed boundaries and points of interest to DXF files for CAD applications.
+
+This project processes geospatial shapefile data by extracting and categorizing altitude information to generate detailed concave hull boundaries for different altitude ranges. The boundaries are smoothed to enhance visual clarity. The system supports exporting these smoothed boundaries, along with key points of interest, as DXF files, enabling seamless integration with CAD software. This functionality facilitates the use of geospatial data for laser cutting, allowing physical 3D recreations of terrain models.
 
 ---
 
