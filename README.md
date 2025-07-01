@@ -52,6 +52,7 @@ cd itziar-mengual
 ```
 ## Dependencies
 
+```python
 Python 3.7+
 geopandas
 pandas
@@ -61,6 +62,7 @@ shapely
 alphashape
 plotly
 ezdxf
+```
 
 ## Author
 Itziar Mengual, 2025
