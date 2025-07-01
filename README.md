@@ -64,5 +64,8 @@ plotly
 ezdxf
 ```
 
+## Data Sources
+The PUN_ACO files used in this project were obtained from the Centro de Descargas del Instituto Geográfico Nacional (IGN), via the Organismo Autónomo Centro Nacional de Información Geográfica (CNIG).
+
 ## Author
 Itziar Mengual, 2025
